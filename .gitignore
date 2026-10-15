@@ -1,0 +1,4 @@
+/build-ninja/debug/
+/build-ninja/release/
+/build-ninja/docker-aarch64/
+/build-ninja/docker-x86_64/

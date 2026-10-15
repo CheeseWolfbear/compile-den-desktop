@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.24)
+project(DenDesktopPublish LANGUAGES C CXX)
+
+if(NOT CMAKE_GENERATOR MATCHES "^Ninja")
+    message(FATAL_ERROR "Den Desktop Linux build requires Ninja")
+endif()
+set(BUILD_TESTING OFF CACHE BOOL "Build applications without tests" FORCE)
+set(PAW_UI_LIBRARY "${CMAKE_CURRENT_SOURCE_DIR}/../../ui" CACHE PATH "Shared Paw UI library")
+set(PAW_UI_RUNTIME_LIBRARY "${PAW_UI_LIBRARY}" CACHE PATH "Installed runtime Paw UI library")
+add_subdirectory(../../den/den-desktop-builder den-desktop-builder)
+target_compile_definitions(den-shell PRIVATE "PAW_UI_LIBRARY=\"${PAW_UI_RUNTIME_LIBRARY}\"")
